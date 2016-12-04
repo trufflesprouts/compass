@@ -1,8 +1,13 @@
 var compass = (function() {
 	var compassNeedle = document.getElementById('compass-needle'),
+			metaTheme = document.getElementsByTagName('meta')[4],
+			outerContainer = document.getElementsByClassName('outer-container')[0],
+			timeEl = document.getElementById('time'),
+			timeTxt = document.getElementById('time-text'),
+			environmentZero = document.getElementsByClassName('environment-0')[0],
 			environmentOne = document.getElementsByClassName('environment-1')[0],
-			timeEl = document.getElementById('time');
-			timeTxt = document.getElementById('time-text');
+			environmentTwo = document.getElementsByClassName('environment-2')[0],
+			environmentThree = document.getElementsByClassName('environment-3')[0];
 
 	function updateTime() {
 		var date = new Date();
@@ -16,33 +21,32 @@ var compass = (function() {
 		current_hour = current_hour < 10 ? "0" + current_hour : current_hour;
 		current_minute = current_minute < 10 ? "0" + current_minute : current_minute;
 		timeEl.textContent = current_hour + ":" + current_minute + " " + t;
-
 	}
 
 	function changeEnviroment() {
 		var date = new Date();
 		var current_hour = date.getHours();
 		var timeOfDay;
-		if (current_hour > 5 && current_hour < 12) {
+		if (current_hour > 5 && current_hour < 17) {
 			timeOfDay = "morning";
-		} else if (current_hour >= 12 && current_hour < 8) {
+		} else if (current_hour >= 17 && current_hour < 20) {
 			timeOfDay = "evening";
 		} else {
 			timeOfDay = "night";
 		}
 		timeTxt.textContent = "Good " + timeOfDay[0].toUpperCase() + timeOfDay.substr(1,timeOfDay.length) + "!";
-		var outerContainer = document.getElementsByClassName('outer-container')[0];
-		if (outerContainer.classList)
+		if (outerContainer.classList) {
 		  outerContainer.classList.add(timeOfDay);
-		else
-		  outerContainer.className += ' ' + timeOfDay;
-		console.log(outerContainer.classList);
-		var en0src = document.getElementsByClassName('environment-0')[0].src;
-		document.getElementsByClassName('environment-0')[0].src = en0src.replace(/(morning|evening|night)/g, timeOfDay);
-		var en1src = document.getElementsByClassName('environment-1')[0].src;
-		document.getElementsByClassName('environment-1')[0].src = en1src.replace(/(morning|evening|night)/g, timeOfDay);
-		var en3src = document.getElementsByClassName('environment-3')[0].src;
-		document.getElementsByClassName('environment-3')[0].src = en3src.replace(/(morning|evening|night)/g, timeOfDay);
+			environmentTwo.classList.add(timeOfDay+"-grass");
+		} else {
+			outerContainer.className += ' ' + timeOfDay;
+			environmentTwo.className += ' ' + timeOfDay +"-grass";
+		}
+		environmentZero.src = environmentZero.src.replace(/(morning|evening|night)/g, timeOfDay);
+		environmentOne.src = environmentOne.src.replace(/(morning|evening|night)/g, timeOfDay);
+		environmentThree.src = environmentThree.src.replace(/(morning|evening|night)/g, timeOfDay);
+		metaTheme.content = getComputedStyle(environmentTwo).getPropertyValue("background-color");
+		console.log(getComputedStyle(environmentTwo).getPropertyValue("background-color"));
 	}
 
 	changeEnviroment();
@@ -62,7 +66,6 @@ var compass = (function() {
 			moveBackground(yAxis);
 			updateTime();
 
-
 	  }, false);
 	} else {
 	  document.body.innerHTML = "<h1 class='unsupported-msg'>Sorry, your browser can't run this app.</h1>";
@@ -75,10 +78,4 @@ var compass = (function() {
 	function moveBackground(y) {
 		environmentOne.style.left = (50 + y/30) + "%";
 	}
-
-	// return {
-	// 	setName: publicSetName,
-	// 	greeting: publicVar,
-	// 	getName: publicGetName
-	// };
 })();

@@ -27,11 +27,11 @@ $nightGrass: #6E7786;;
   overflow: hidden;
 }
 
-.morning {background: linear-gradient(to bottom, $morningLight 0%,$morningDark 100%);}
+.morning {background: -webkit-linear-gradient(top, $morningLight 0%,$morningDark 100%);background: linear-gradient(to bottom, $morningLight 0%,$morningDark 100%);}
 
-.evening {background: linear-gradient(to bottom, $eveningLight 0%,$eveningDark 100%);}
+.evening {background: -webkit-linear-gradient(top, $eveningLight 0%,$eveningDark 100%);background: linear-gradient(to bottom, $eveningLight 0%,$eveningDark 100%);}
 
-.night {background: linear-gradient(to bottom, $nightLight 0%,$nightDark 100%);}
+.night {background: -webkit-linear-gradient(top, $nightLight 0%,$nightDark 100%);background: linear-gradient(to bottom, $nightLight 0%,$nightDark 100%);}
 
 .morning-grass {background-image: url(../images/grass-noise.png);background-color: $morningGrass;background-blend-mode: screen;}
 
@@ -46,7 +46,8 @@ $nightGrass: #6E7786;;
 
 .center-absolute {
   left: 50%;
-  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 
 .center-text {
@@ -83,9 +84,15 @@ h2 {
 .compass {
   position: relative;
   margin-top: 20%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   height: 283px;
 }
 
@@ -102,8 +109,8 @@ h2 {
 }
 
 .compass-needle {
-  -webkit-filter: drop-shadow( 0 0 24px rgba(0, 0, 0, 0.25) );
-  filter: drop-shadow( 0 0 24px rgba(0, 0, 0, 0.25) );
+  -webkit-filter: drop-shadow( 0 0 20px rgba(0, 0, 0, 0.15) );
+  filter: drop-shadow( 0 0 20px rgba(0, 0, 0, 0.15) );
 }
 
 .environment-0 {
@@ -116,7 +123,8 @@ h2 {
   position: absolute;
   bottom: 42px;
   left: 50%;
-  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 
 .environment-2 {
