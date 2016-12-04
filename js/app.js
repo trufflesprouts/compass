@@ -46,16 +46,15 @@ var compass = (function() {
 		environmentOne.src = environmentOne.src.replace(/(morning|evening|night)/g, timeOfDay);
 		environmentThree.src = environmentThree.src.replace(/(morning|evening|night)/g, timeOfDay);
 		metaTheme.content = getComputedStyle(environmentTwo).getPropertyValue("background-color");
-		console.log(getComputedStyle(environmentTwo).getPropertyValue("background-color"));
 	}
 
 	changeEnviroment();
 
 	if (window.DeviceOrientationEvent) {
-		if (typeof window.orientation == 'undefined') {
-			document.body.innerHTML = "<h1 class='unsupported-msg'>Sorry, your device doesn't have a magnetometer.</h1>";
-			return;
-		};
+		// if (typeof window.orientation == 'undefined') {
+		// 	document.body.innerHTML = "<h1 class='unsupported-msg'>Sorry, your device doesn't have a magnetometer.</h1>";
+		// 	return;
+		// };
 	  // Listen for the deviceorientation event and handle the raw data
 	  window.addEventListener('deviceorientationabsolute', function(eventData) {
 			var yAxis = eventData.gamma;
@@ -72,7 +71,7 @@ var compass = (function() {
 	}
 
 	function updateNeedle(z) {
-		compassNeedle.style.transform = "rotate("+z+"deg)";
+		compassNeedle.style.transform = "translate(-50%,-50%) rotate("+z+"deg)";
 	}
 
 	function moveBackground(y) {

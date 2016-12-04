@@ -83,24 +83,32 @@ h2 {
 
 .compass {
   position: relative;
-  margin-top: 20%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  // margin-top: 20%;
+  // display: -webkit-box;
+  // display: -ms-flexbox;
+  // display: flex;
+  // -webkit-box-pack: center;
+  //     -ms-flex-pack: center;
+  //         justify-content: center;
+  // -webkit-box-align: center;
+  //     -ms-flex-align: center;
+  //         align-items: center;
+  margin: 70px auto;
   height: 283px;
+  width: 283px;
 }
 
 .compass-0 {
   position: absolute;
   width: 283px;
   height: 283px;
+}
 
+.compass-needle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%) rotate(10deg);
 }
 
 .time {
